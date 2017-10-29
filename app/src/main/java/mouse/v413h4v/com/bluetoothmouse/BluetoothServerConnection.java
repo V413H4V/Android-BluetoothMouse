@@ -161,6 +161,12 @@ public class BluetoothServerConnection {
             }
         }
 
+       /* public void sendMessage(String msg){
+            String to_send = msg + "|";
+            byte[] bytes = to_send.getBytes();
+            write(bytes);
+        }*/
+
         /* Call this from the main activity to shutdown the connection */
         public void cancel() {
             try {
@@ -169,7 +175,7 @@ public class BluetoothServerConnection {
         }
     }
 
-    public void write(byte[] out) {
+    /*public void write(byte[] out) {
         // Create temporary object
         ConnectedThread r;
 
@@ -177,6 +183,19 @@ public class BluetoothServerConnection {
         Log.d(TAG, "write: Write Called.");
         //perform the write
         mConnectedThread.write(out);
+    }*/
+
+    public void write(String msg) {
+        // Create temporary object
+        ConnectedThread r;
+
+        // Synchronize a copy of the ConnectedThread
+        Log.d(TAG, "write: Write Called.");
+        //perform the write
+        String to_send = msg + "|";
+        byte[] bytes = to_send.getBytes();
+
+        mConnectedThread.write(bytes);
     }
 
 }
